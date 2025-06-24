@@ -189,7 +189,7 @@ def delete(id_deletado):
 def list(category,month_year):
     soma = 0.0
     linhas_listadas = []
-    if category and (not category.isdigit() or int(category)>5 or int(category) <1):
+    if category and not category in categorias:
         click.echo("erro no formato")
         exit()
 
