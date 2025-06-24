@@ -71,7 +71,7 @@ def add():
     click.echo("5. Outros")
     while True:
         categoria = click.prompt("Digite o número correspondente")
-        if categoria.isdigit() == False or int(categoria)>5:
+        if categoria.isdigit() == False or int(categoria)>5 or categoria<1:
             print("Valor inválido, digite um valor positivo")
             continue
         else:
@@ -175,7 +175,7 @@ def delete(id_deletado):
     else:
         try:
             with open("despesas.csv", "w") as arquivo:
-                dados = csv.DictWriter(arquivo, fieldnames=["ID","Data","Descrivao","Valor","Categoria"], lineterminator='\n')
+                dados = csv.DictWriter(arquivo, fieldnames=["ID","Data","Descricao","Valor","Categoria"], lineterminator='\n')
                 dados.writeheader()
                 for linha in linhas_editadas:
                     dados.writerow(linha)
@@ -189,6 +189,15 @@ def delete(id_deletado):
 def list(category,month_year):
     soma = 0.0
     linhas_listadas = []
+    if category and (not category.isdigit() or int(category)>5 or int(category) <1):
+        click.echo("erro no formato")
+        exit()
+
+    if month_year and (not month_year[0:2].isdigit() or not month_year[3:7].isdigit()):
+        click.echo("erro no formato")
+        exit()
+
+
     try:
         with open("despesas.csv", "r") as arquivo:
             dados = csv.DictReader(arquivo)
