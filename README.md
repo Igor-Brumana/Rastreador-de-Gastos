@@ -35,7 +35,7 @@ Você pode instalar as dependências com:
 - pip install click rich
 
 
-🧪 Como usar
+## 🧪 Como usar
 
 Adicionar uma nova despesa
 `python main.py add`
@@ -59,7 +59,8 @@ Ver resumo financeiro de um mês/ano
 `python main.py resume MM/YYYY`
 
 
-📌 Categorias disponíveis:
+## 📌 Categorias disponíveis:
+
 Alimentação
 
 Transporte
