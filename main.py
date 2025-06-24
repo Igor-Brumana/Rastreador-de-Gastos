@@ -71,8 +71,8 @@ def add():
     click.echo("5. Outros")
     while True:
         categoria = click.prompt("Digite o número correspondente")
-        if categoria.isdigit() == False or int(categoria)>5 or categoria<1:
-            print("Valor inválido, digite um valor positivo")
+        if categoria.isdigit() == False or int(categoria)>5 or int(categoria)<1:
+            print("Valor inválido, digite um numeral positivo de 1 a 5")
             continue
         else:
             break
@@ -190,11 +190,11 @@ def list(category,month_year):
     soma = 0.0
     linhas_listadas = []
     if category and not category in categorias:
-        click.echo("erro no formato")
+        click.echo("esta categoria não existe")
         exit()
 
     if month_year and (not month_year[0:2].isdigit() or not month_year[3:7].isdigit()):
-        click.echo("erro no formato")
+        click.echo("formato de data invalido, use MM/YYYY")
         exit()
 
 
@@ -233,10 +233,10 @@ def list(category,month_year):
 @cli.command()
 @click.argument("data_resumo")
 def resume(data_resumo):
+    meses_extenso=["Janeiro","Fevereiro", "Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
     participacao_categorias = {cat: 0.0 for cat in categorias}
     try:
         data_resumo = data_resumo.strip()
-        click.echo(data_resumo)
         mes_resumo,ano_resumo = data_resumo.split("/")
         if len(mes_resumo) != 2 or len(ano_resumo) != 4 or not mes_resumo.isdigit() or not ano_resumo.isdigit():
             click.echo("Formato inválido! Use o formato MM/YYYY.")
@@ -262,7 +262,7 @@ def resume(data_resumo):
             return
 
         console = Console()
-        tabela = Table(title="Resumo Financeiro: {}/{}".format(mes_resumo,ano_resumo))
+        tabela = Table(title="Resumo Financeiro: {}/{}".format(meses_extenso[int(mes_resumo)-1],ano_resumo))
         tabela.add_column("Categoria")
         tabela.add_column("Valor (R$)")
         tabela.add_column("Percentual")
