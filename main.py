@@ -20,6 +20,7 @@ def cli():
 
 @cli.command()
 def add():
+    """Adicionar uma nova despesa."""
     id_atual = 1
     try:
         with open("despesas.csv", "r") as arquivo:
@@ -88,6 +89,7 @@ def add():
 @cli.command()
 @click.argument("id_editado")
 def edit(id_editado):
+    """Editar uma despesa existente."""
     click.echo("Editando despesa com ID: {}".format(id_editado))
     gasto_atual={}
     dados = []
@@ -158,6 +160,7 @@ def edit(id_editado):
 @cli.command()
 @click.argument("id_deletado")
 def delete(id_deletado):
+    """Deletar uma despesa existente."""
     id_nao_encontrado = True
     linhas_editadas = []
     try:
@@ -187,6 +190,7 @@ def delete(id_deletado):
 @click.option("--category", default = None,help="Filtra as despesas por categoria.")
 @click.option("--month-year", default = None,help="Filtra as despesas de um mês/ano específico(formato MM/YYYY).")
 def list(category,month_year):
+    """Listar todas as despesas registradas."""
     soma = 0.0
     linhas_listadas = []
     if category and not category in categorias:
@@ -233,6 +237,7 @@ def list(category,month_year):
 @cli.command()
 @click.argument("data_resumo")
 def resume(data_resumo):
+    """Exibir o resumo financeiro mensal."""
     meses_extenso=["Janeiro","Fevereiro", "Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
     participacao_categorias = {cat: 0.0 for cat in categorias}
     try:
