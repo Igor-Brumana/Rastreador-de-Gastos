@@ -1,5 +1,4 @@
 # Rastreador-de-Gastos
-# Rastreador-de-Gastos
 
 Um aplicativo de linha de comando (CLI) em Python para registrar, listar, editar, excluir e resumir suas despesas com praticidade e organização.
 
@@ -37,6 +36,7 @@ Você pode instalar as dependências com:
 
 
 🧪 Como usar
+
 Adicionar uma nova despesa
 `python main.py add`
 
